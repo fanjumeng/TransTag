@@ -2,8 +2,7 @@
 
 This repository contains scripts for the alignment-free Shiny app analysis in: 
 
-TransTag: simple and efficient transgene mapping in zebrafish via tagmentation.
-Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.
+**TransTag: simple and efficient transgene mapping in zebrafish via tagmentation. Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.**
 
 
 ### Scripts
@@ -15,8 +14,10 @@ Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own compute
 
 Input: 
 	sample.fastq.gz
+	
 Ouput: 
 	sample.flankingSequences.txt
+	
 Example usage:
 	bash TransTag_alignmentFree.sh sample.fastq.gz 
    
@@ -24,6 +25,7 @@ Example usage:
 **TransTag_alignmentFree.ShinyApp.R**
 This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
 The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
+
 Required packages in R
 	```
 	shiny
@@ -32,6 +34,7 @@ Required packages in R
 	```
 Usage:
 	Open the downloaded script in R Studio and click "Run App", and the Shiny application will pop out in a new window. Upload the flanking sequence file for process.
+	
 Example file:
 	example.flankingSequences.txt
 
