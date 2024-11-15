@@ -20,17 +20,17 @@ Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own compute
 
 - **TransTag_alignmentFree.ShinyApp.R**
 
-This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
+> This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
 The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
 
-<ins>Required packages in R</ins> <br/>
+> Required packages in R <br/>
 ```shiny``` <br/>
 ```tidyverse``` <br/>
 ```dplyr``` <br/>
 	
-<ins>Usage</ins>: Open the downloaded script in R Studio and click "Run App", the Shiny application will pop out in a new window. Upload the flanking sequence file for processing.
+> Usage: Open the downloaded script in R Studio and click "Run App", the Shiny application will pop out in a new window. Upload the flanking sequence file for processing.
 	
-<ins>Example file</ins>: ```example.flankingSequences.txt```
+> Example file: ```example.flankingSequences.txt```
 
 ### Notes
 
