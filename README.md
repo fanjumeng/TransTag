@@ -2,43 +2,45 @@
 
 This repository contains scripts for the alignment-free Shiny app analysis in: 
 
-**TransTag: simple and efficient transgene mapping in zebrafish via tagmentation. Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.**
+**TransTag: simple and efficient transgene mapping in zebrafish via tagmentation.**
+Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.
 
 
-### Scripts
+## Scripts
 
-**TransTag_alignmentFree.sh**
+- **TransTag_alignmentFree.sh**
+
 This is a pre-processing script that takes in the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads), extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences, and outputs the remaining flanking sequences. 
 The output flanking sequence file then can be uploaded to the online Shiny app https://menglab.shinyapps.io/transtag_alignmentfree/ for further processing.
 Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own computers and upload the output file.
 
-Input: 
-	sample.fastq.gz
-	
-Ouput: 
-	sample.flankingSequences.txt
-	
-Example usage:
+	- Input: 
+	sample.fastq.gz	
+	- Ouput: 
+	sample.flankingSequences.txt	
+	- Example usage:
 	bash TransTag_alignmentFree.sh sample.fastq.gz 
    
 
-**TransTag_alignmentFree.ShinyApp.R**
+- **TransTag_alignmentFree.ShinyApp.R**
+
 This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
 The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
 
-Required packages in R
+Required packages in R <br/>
 	```
-	shiny
-	tidyverse
-	dplyr
+	shiny <br/>
+	tidyverse <br/>
+	dplyr <br/>
 	```
-Usage:
+	
+Usage:<br/>
 	Open the downloaded script in R Studio and click "Run App", and the Shiny application will pop out in a new window. Upload the flanking sequence file for process.
 	
-Example file:
+Example file:<br/>
 	example.flankingSequences.txt
 
-### Notes
+## Notes
 
 1. Based on the assembled Tn5 used in the library preparation step, R1 reads file for the pair-end sequencing reads will have the Tol2 repeat sequence. For alignment-free analysis, R1 reads file would be the input file for the TransTag_alignmentFree.sh script.
 
