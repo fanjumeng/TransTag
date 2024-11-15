@@ -13,9 +13,9 @@ Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern
 This is a pre-processing script that takes in the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads), extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences, and outputs the remaining flanking sequences. <br/> 
 The output flanking sequence file then can be uploaded to the online Shiny app https://menglab.shinyapps.io/transtag_alignmentfree/ for further processing. <br/>
 Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own computers and upload the output file. <br/>
-<ins>Input</ins>: sample.fastq.gz	
-<ins>Ouput</ins>: sample.flankingSequences.txt	
-<ins>Example usage</ins>: bash TransTag_alignmentFree.sh sample.fastq.gz 
+<ins>Input</ins>: sample.fastq.gz <br/>
+<ins>Ouput</ins>: sample.flankingSequences.txt <br/>
+<ins>Example usage</ins>: bash TransTag_alignmentFree.sh sample.fastq.gz <br/>
    
 
 - **TransTag_alignmentFree.ShinyApp.R**
@@ -23,10 +23,10 @@ Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own compute
 This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
 The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
 
-Required packages in R <br/>
-	- shiny
-	- tidyverse
-	- dplyr
+<ins>Required packages in R</ins> <br/>
+	-shiny <br/>
+	-tidyverse <br/>
+	-dplyr <br/>
 	
 <ins>Usage</ins>: Open the downloaded script in R Studio and click "Run App", and the Shiny application will pop out in a new window. Upload the flanking sequence file for process.
 	
