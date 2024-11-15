@@ -14,6 +14,8 @@ Ouput:
 	sample.flankingSequences.txt
 Example usage:
 	bash TransTag_alignmentFree.sh sample.fastq.gz 
+
+@author: Fanju Meng (fanju.meng@unt.edu) 
 """
 
 #Take input fastq.gz file from command line input

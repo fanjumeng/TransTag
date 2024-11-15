@@ -1,3 +1,9 @@
+######################
+#This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
+#The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). 
+#You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
+#author: Xiaolu Wei (xiaolu.wei@unt.edu)
+######################
 
 # Load libraries ----
 library(shiny)
