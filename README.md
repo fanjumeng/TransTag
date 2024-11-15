@@ -6,7 +6,7 @@ This repository contains scripts for the alignment-free Shiny app analysis in:
 Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.
 
 
-## Scripts
+### Scripts
 
 - **TransTag_alignmentFree.sh**
 
@@ -15,7 +15,7 @@ The output flanking sequence file then can be uploaded to the online Shiny app h
 Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own computers and upload the output file. <br/>
 <ins>Input</ins>: sample.fastq.gz <br/>
 <ins>Ouput</ins>: sample.flankingSequences.txt <br/>
-<ins>Example usage</ins>: bash TransTag_alignmentFree.sh sample.fastq.gz <br/>
+<ins>Example usage</ins>: ```bash TransTag_alignmentFree.sh sample.fastq.gz``` <br/>
    
 
 - **TransTag_alignmentFree.ShinyApp.R**
@@ -24,15 +24,15 @@ This is the R script to launch Shiny app to process the flanking sequence file, 
 The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
 
 <ins>Required packages in R</ins> <br/>
-	-shiny <br/>
-	-tidyverse <br/>
-	-dplyr <br/>
+```shiny``` <br/>
+```tidyverse``` <br/>
+```dplyr``` <br/>
 	
-<ins>Usage</ins>: Open the downloaded script in R Studio and click "Run App", and the Shiny application will pop out in a new window. Upload the flanking sequence file for process.
+<ins>Usage</ins>: Open the downloaded script in R Studio and click "Run App", the Shiny application will pop out in a new window. Upload the flanking sequence file for processing.
 	
 <ins>Example file</ins>: example.flankingSequences.txt
 
-## Notes
+### Notes
 
 1. Based on the assembled Tn5 used in the library preparation step, R1 reads file for the pair-end sequencing reads will have the Tol2 repeat sequence. For alignment-free analysis, R1 reads file would be the input file for the TransTag_alignmentFree.sh script.
 
