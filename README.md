@@ -10,12 +10,12 @@ Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern
 
 - **TransTag_alignmentFree.sh**
 
-This is a pre-processing script that takes in the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads), extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences, and outputs the remaining flanking sequences.
+> This is a pre-processing script that takes in the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads), extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences, and outputs the remaining flanking sequences.
 The output flanking sequence file then can be uploaded to the online Shiny app https://menglab.shinyapps.io/transtag_alignmentfree/ for further processing.
 Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own computers and upload the output file. <br/>
-Input: ```sample.fastq.gz``` <br/>
-<ins>Ouput</ins>: ```sample.flankingSequences.txt``` <br/>
-<ins>Example usage</ins>: ```bash TransTag_alignmentFree.sh sample.fastq.gz``` <br/>
+> Input: ```sample.fastq.gz``` <br/>
+> Ouput: ```sample.flankingSequences.txt``` <br/>
+> Example usage: ```bash TransTag_alignmentFree.sh sample.fastq.gz``` <br/>
    
 
 - **TransTag_alignmentFree.ShinyApp.R**
