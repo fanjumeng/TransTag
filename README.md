@@ -10,8 +10,8 @@ Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern
 
 **TransTag_alignmentFree.ShinyApp.R**
 
-This is the R script to launch Shiny app interface to process the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads) from the TransTag library. <br/>
-Briefly, the script extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences to extract the genomic sequences flanking transgene insertion sites, and displays the top fifteen most abundant flanking region sequences. The enriched flanking sequences can then be mapped to the zebrafish genome using any standard online tool, such as UCSC BLAT (https://genome.ucsc.edu) or NCBI BLAST (https://blast.ncbi.nlm.nih.gov/Blast.cgi), allowing users to assign genomic coordinates of transgenes. <br/>
+This is the R script to launch Shiny app interface to process the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads) from the TransTag library. Briefly, the script extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences to extract the genomic sequences flanking transgene insertion sites, and displays the top fifteen most abundant flanking region sequences. The enriched flanking sequences can then be mapped to the zebrafish genome using any standard online tool, such as UCSC BLAT (https://genome.ucsc.edu) or NCBI BLAST (https://blast.ncbi.nlm.nih.gov/Blast.cgi), allowing users to assign genomic coordinates of transgenes. <br/>
+
 - Example input file: ```Example_subsample_to_1millionReads_R1.fastq.gz``` <br/>
 
 - Users can use the online version of TransTag Shiny app interface (for smaller size input files (<1 GB), the shinyapps.io can only process input files smaller than 1GB). <br/>
@@ -31,7 +31,6 @@ Briefly, the script extracts chimeric reads that contain Tol2 sequences, trim of
 	 install.packages("shiny")
 	 install.packages("tidyverse")
 	 install.packages("dplyr")
-
 	 ```
   - e. Click “Run App” to launch the Shiny app. The Shiny app interface will show up in a new window. Please follow the same steps as the using the online version of TransTag Shiny app interface section to conduct analysis. <br/>
 
