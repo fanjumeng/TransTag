@@ -15,23 +15,25 @@ Briefly, the script extracts chimeric reads that contain Tol2 sequences, trim of
 - Example input file: ```Example_subsample_to_1millionReads_R1.fastq.gz``` <br/>
 
 - Users can use the online version of TransTag Shiny app interface (for smaller size input files (<1 GB), the shinyapps.io can only process input files smaller than 1GB). <br/>
-  a. Open alignment-free R Shiny App website in a web browser: https://menglab.shinyapps.io/transtag_alignmentfree/. <br/>
-  b. Upload raw sequencing data from the TransTag library for processing (first read R1 file for paired-end reads). It will show the top fifteen abundant genomic sequences flanking Tol2 insertion site in the “Output Table” tab, and size distribution of the chimeric reads with flanking genomic sequences in the “Summary Plot” tab. You may choose to change the read length cutoff quantile between 0.2 to 0.9 based on the size distribution. The default value for read length cutoff quantile is set at 0.75. <br/>
-  c. By changing the read length cutoff quantile between 0.2 to 0.9, the TransTag Shiny app will display flanking genomic regions with different lengths and count numbers accordingly. <br/>
-  d. To identify the genomic coordinates of transgene insertion site(s), use any standard online tool, such as UCSC BLAT (https://genome.ucsc.edu) or NCBI BLAST (https://blast.ncbi.nlm.nih.gov/Blast.cgi). <br/>
+
+  - a. Open alignment-free R Shiny App website in a web browser: https://menglab.shinyapps.io/transtag_alignmentfree/. <br/>
+  - b. Upload raw sequencing data from the TransTag library for processing (first read R1 file for paired-end reads). It will show the top fifteen abundant genomic sequences flanking Tol2 insertion site in the “Output Table” tab, and size distribution of the chimeric reads with flanking genomic sequences in the “Summary Plot” tab. You may choose to change the read length cutoff quantile between 0.2 to 0.9 based on the size distribution. The default value for read length cutoff quantile is set at 0.75. <br/>
+  - c. By changing the read length cutoff quantile between 0.2 to 0.9, the TransTag Shiny app will display flanking genomic regions with different lengths and count numbers accordingly. <br/>
+  - d. To identify the genomic coordinates of transgene insertion site(s), use any standard online tool, such as UCSC BLAT (https://genome.ucsc.edu) or NCBI BLAST (https://blast.ncbi.nlm.nih.gov/Blast.cgi). <br/>
   
 - Alternatively, users can run TransTag_alignmentFree.ShinyApp.R on their own computers to launch the Shiny app interface (for any size input files). <br/>
-  a. Download and install R and RStudio on local computer following instruction on https://posit.co/download/rstudio-desktop/. <br/>
-  b. Download alignment-free R Shiny app script “TransTag_alignmentFree.ShinyApp.R”. <br/>
-  c. Double click the downloaded R shiny script to open it in RStudio. <br/>
-  d. Install required packages. Type the following code in RStudio Console and enter to run: <br/>
+
+  - a. Download and install R and RStudio on local computer following instruction on https://posit.co/download/rstudio-desktop/. <br/>
+  - b. Download alignment-free R Shiny app script “TransTag_alignmentFree.ShinyApp.R”. <br/>
+  - c. Double click the downloaded R shiny script to open it in RStudio. <br/>
+  - d. Install required packages. Type the following code in RStudio Console and enter to run: <br/>
   	 ```
 	 install.packages("shiny")
 	 install.packages("tidyverse")
 	 install.packages("dplyr")
 
 	 ```
-  e. Click “Run App” to launch the Shiny app. The Shiny app interface will show up in a new window. Please follow the same steps as the using the online version of TransTag Shiny app interface section to conduct analysis. <br/>
+  - e. Click “Run App” to launch the Shiny app. The Shiny app interface will show up in a new window. Please follow the same steps as the using the online version of TransTag Shiny app interface section to conduct analysis. <br/>
 
 
 ## Notes
