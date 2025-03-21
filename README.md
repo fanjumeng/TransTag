@@ -6,28 +6,36 @@ This repository contains scripts for the alignment-free Shiny app analysis in:
 Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.
 
 
-## Scripts
+## Script 
 
-- **TransTag_alignmentFree.sh**
+**TransTag_alignmentFree.ShinyApp.R**
 
-> This is a pre-processing script that takes in the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads), extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences, and outputs the remaining flanking sequences.
-The output flanking sequence file then can be uploaded to the online Shiny app https://menglab.shinyapps.io/transtag_alignmentfree/ for further processing.
-Alternatively, you can run TransTag_alignmentFree.ShinyApp.R on your own computers and upload the output file. <br/>
-> **Input**: ```sample.fastq.gz``` <br/>
-> **Ouput**: ```sample.flankingSequences.txt``` <br/>
-> **Example usage**: ```bash TransTag_alignmentFree.sh sample.fastq.gz``` <br/>
-   
+This is the R script to launch Shiny app interface to process the raw sequencing reads fastq.gz file (first read R1 file for paired-end reads) from the TransTag library. <br/>
+Briefly, the script extracts chimeric reads that contain Tol2 sequences, trim offs Tn5 adapter and Tol2 sequences to extract the genomic sequences flanking transgene insertion sites, and displays the top fifteen most abundant flanking region sequences. The enriched flanking sequences can then be mapped to the zebrafish genome using any standard online tool, such as UCSC BLAT (https://genome.ucsc.edu) or NCBI BLAST (https://blast.ncbi.nlm.nih.gov/Blast.cgi), allowing users to assign genomic coordinates of transgenes. <br/>
+- Example input file: ```Example_subsample_to_1millionReads_R1.fastq.gz``` <br/>
 
-- **TransTag_alignmentFree.ShinyApp.R**
+- Users can use the online version of TransTag Shiny app interface (for smaller size input files (<1 GB), the shinyapps.io can only process input files smaller than 1GB). <br/>
+  a. Open alignment-free R Shiny App website in a web browser: https://menglab.shinyapps.io/transtag_alignmentfree/. <br/>
+  b. Upload raw sequencing data from the TransTag library for processing (first read R1 file for paired-end reads). It will show the top fifteen abundant genomic sequences flanking Tol2 insertion site in the “Output Table” tab, and size distribution of the chimeric reads with flanking genomic sequences in the “Summary Plot” tab. You may choose to change the read length cutoff quantile between 0.2 to 0.9 based on the size distribution. The default value for read length cutoff quantile is set at 0.75. <br/>
+  c. By changing the read length cutoff quantile between 0.2 to 0.9, the TransTag Shiny app will display flanking genomic regions with different lengths and count numbers accordingly. <br/>
+  d. To identify the genomic coordinates of transgene insertion site(s), use any standard online tool, such as UCSC BLAT (https://genome.ucsc.edu) or NCBI BLAST (https://blast.ncbi.nlm.nih.gov/Blast.cgi). <br/>
+  
+- Alternatively, users can run TransTag_alignmentFree.ShinyApp.R on their own computers to launch the Shiny app interface (for any size input files). <br/>
+  a. Download and install R and RStudio on local computer following instruction on https://posit.co/download/rstudio-desktop/. <br/>
+  b. Download alignment-free R Shiny app script “TransTag_alignmentFree.ShinyApp.R”. <br/>
+  c. Double click the downloaded R shiny script to open it in RStudio. <br/>
+  d. Install required packages. Type the following code in RStudio Console and enter to run: <br/>
+  	 ```
+	 install.packages("shiny")
+	 install.packages("tidyverse")
+	 install.packages("dplyr")
 
-> This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
-The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).<br/>
-> **Required packages in R**: ```shiny```, ```tidyverse``` and ```dplyr``` <br/>	
-> **Usage**: Open the downloaded script in R Studio and click "Run App", the Shiny application will pop out in a new window. Upload the flanking sequence file for processing. <br/>
-> **Example file**: ```example.flankingSequences.txt``` <br/>
+	 ```
+  e. Click “Run App” to launch the Shiny app. The Shiny app interface will show up in a new window. Please follow the same steps as the using the online version of TransTag Shiny app interface section to conduct analysis. <br/>
+
 
 ## Notes
 
-1. Based on the assembled Tn5 used in the library preparation step, R1 reads file for the pair-end sequencing reads will have the Tol2 repeat sequence. For alignment-free analysis, R1 reads file would be the input file for the TransTag_alignmentFree.sh script.
-
-2. If you get "Maximum upload size exceeded" error, modify ```options(shiny.maxRequestSize = )``` in the TransTag_alignmentFree.ShinyApp.R script to increase the limit.
+1. Based on the assembled Tn5 used in the library preparation step, R1 reads file for the pair-end sequencing reads will have the Tol2 repeat sequence. For alignment-free analysis, R1 reads file would be the input file for the Shiny app interface. <br/>
+2. If "Maximum upload size exceeded" error occurs, modify `options(shiny.maxRequestSize = )` in the TransTag_alignmentFree.ShinyApp.R script to increase the input file size limit. The default size limit is 20 GB. <br/>
+3. Please refer to the supplemental file of the manuscript for the more detailed step-by-step analysis tutorial.

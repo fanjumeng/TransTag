@@ -1,7 +1,6 @@
 ######################
-#This is the R script to launch Shiny app to process the flanking sequence file, and output the top enriched k-mer sequences.
-#The top enriched k-mer sequences represent genomic regions flanking the most possible insertion site(s). 
-#You can search/blast the most enriched k-mer sequence(s) in the genome to find the possible location of insertion site(s).
+#This is the R script to launch TransTag Shiny app to process raw sequencing files, and output the top enriched genomic sequences flanking transgene insertion sites.
+#You can search/blast the most enriched flanking genomic sequence(s) in the genome to find the possible location of insertion site(s).
 #author: Xiaolu Wei (xiaolu.wei@unt.edu)
 ######################
 
@@ -10,7 +9,8 @@ library(shiny)
 library(tidyverse)
 library(dplyr)
 
-options(shiny.maxRequestSize = 100 * 1024^2)
+#set upload input file size limit, default is set to 20 GB
+options(shiny.maxRequestSize = 20 * 1000 * 1024^2)
 
 remove_bold <-"#expr-container label {font-weight: 400;}"
 
@@ -23,19 +23,18 @@ ui <- fluidPage(
     sidebarPanel(width = 4,
                  tags$style(remove_bold), 
                  tags$div(id = "expr-container", 
-                   h4("Upload file"),
-                   fileInput(inputId = "InputFile",
-                             label = "'Sample.flankingSequences.txt': processed file from 'TransTag_alignmentFree.sh'",
-                             accept = c(".txt"),
+                   h4("Upload raw sequencing file"),
+                   fileInput(inputId = "InputFile_raw",
+                             label = "Accepted file formats are '.fastq', '.fq', '.fastq.gz' and '.fq.gz'",
+                             accept = c(".gz", ".fastq", ".fq"),
                              multiple = FALSE),
                    h6(br()),
                    h4("Parameter"),
                    sliderInput(inputId = "cutoff", 
                                label = "Read length cutoff quantile", 
-                               min = 0.5, max = 0.9, step= 0.05, value = 0.75),
+                               min = 0.2, max = 0.9, step= 0.05, value = 0.75),
                    textOutput(outputId = "size"),
                    h4(br()),
-                   ##textOutput(outputId = "percentage"),
                    htmlOutput(outputId = "percentage"),
                  ) ## Closes custom style
       ), ## Closes Sidebar Panel
@@ -47,14 +46,16 @@ ui <- fluidPage(
                 tabPanel("Output Table",
                          #h3("Output Table"),
                          column(width = 12,
-                                #h4("Output Table"),
                                 h3("Top15 flanking genomic regions of insertion sites"),
+                                "With the top flanking genomic region sequences, please use",
+                                tags$a(href="https://genome.ucsc.edu/cgi-bin/hgBlat?hgsid=2483396421_8L6l8Cv6o6gPfhcNS6Ajh4JZT4JE&command=start", 
+                                       "UCSC Genome Browser blast tool"), "to further locate the insertion site in the genome.",
                                 tableOutput("out_simple_table"))
                 ), ## Closes Tab 1
                 
                 ### Tab 2: Plots ----
                 tabPanel("Summary Plot",
-                         h3("Read size distribution after trimming"),
+                         h3("Trimmed/processed chimeric read size distribution"),
                          plotOutput("out_plot")
                 ) ## Closes Tab 2) ## Closes Tabset Panel
                 
@@ -103,9 +104,15 @@ server <- function(input, output) {
   }
   
   ## Reactive expression to load data
-  data <- reactive({ 
-    req(input$InputFile)
-    read.table(input$InputFile$datapath, header = FALSE)
+  #input raw sequencing data file (fastq format)
+  data <- reactive({
+    req(input$InputFile_raw)
+    #use system call to process the input file as following:
+    #Extract chimeric reads that contain Tol2 sequences
+    #Trim off Tn5 adapter sequences from 3' end
+    #Trim off Tol2 sequences from 5' end
+    inData <- as.data.frame(system(paste("zgrep TTTCACTTGAGTAAAATTTTTGAGTACTTTTTACACCTCTG", input$InputFile_raw$datapath, "| sed 's/CTGTCTCT.*$//g' | sed 's/^.*CTTTTTACACCTCTG//g'"), intern = TRUE))
+    data.frame(V1=inData[,1])
   })
   
   ## Reactive expression to calculate read size cutoff
@@ -131,8 +138,8 @@ server <- function(input, output) {
     ifelse(pt > 30 & nn > 100, 
           paste0(paste0("<B>Warning</B>: Percentage of kmers with Tol2 vector sequences is ", sprintf("%0.1f%%", pt)), ", there may be Tol2-independent integration event(s)"),
           '')
-  })
-
+    })
+  
   ## Render text/table/plot output
   ## Text Outputs
   output$size <- renderText(size())
