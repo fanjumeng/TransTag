@@ -1,8 +1,8 @@
 # TransTag
 
-This repository contains scripts for the alignment-free Shiny app analysis in: 
+This repository contains scripts for the alignment-free Shiny app analysis described in: 
 
-**TransTag: simple and efficient transgene mapping in zebrafish via tagmentation.** <br/>
+**TransTag enables simple and efficient transgene mapping in zebrafish via tagmentation.** <br/>
 Fanju W. Meng, Paige Schneider, Xiaolu Wei, Krishan Ariyasiri, Marnie E. Halpern, Patrick J. Murphy.
 
 
@@ -39,4 +39,4 @@ This is the R script to launch Shiny app interface to process the raw sequencing
 
 1. Based on the assembled Tn5 used in the library preparation step, R1 reads file for the pair-end sequencing reads will have the Tol2 repeat sequence. For alignment-free analysis, R1 reads file would be the input file for the Shiny app interface. <br/>
 2. If "Maximum upload size exceeded" error occurs, modify `options(shiny.maxRequestSize = )` in the TransTag_alignmentFree.ShinyApp.R script to increase the input file size limit. The default size limit is 20 GB. <br/>
-3. Please refer to the supplemental file of the manuscript for the more detailed step-by-step analysis tutorial.
+3. Please refer to the "TransTag_Shinyapp_analysis_tutorial" in this repository for more detailed step-by-step tutorial for data analysis.
